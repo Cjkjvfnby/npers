@@ -1,0 +1,362 @@
+if (typeof kotlin === 'undefined') {
+  throw new Error("Error loading module 'output'. Its dependency 'kotlin' was not found. Please, check whether 'kotlin' is loaded prior to 'output'.");
+}
+if (typeof this['kotlinx-html-js'] === 'undefined') {
+  throw new Error("Error loading module 'output'. Its dependency 'kotlinx-html-js' was not found. Please, check whether 'kotlinx-html-js' is loaded prior to 'output'.");
+}
+var output = function (_, Kotlin, $module$kotlinx_html_js) {
+  'use strict';
+  var isBlank = Kotlin.kotlin.text.isBlank_gw00vp$;
+  var clear = Kotlin.kotlin.dom.clear_asww5s$;
+  var println = Kotlin.kotlin.io.println_s8jyv4$;
+  var Unit = Kotlin.kotlin.Unit;
+  var listOf = Kotlin.kotlin.collections.listOf_i5x0yv$;
+  var get_create = $module$kotlinx_html_js.kotlinx.html.dom.get_create_4wc2mh$;
+  var div = $module$kotlinx_html_js.kotlinx.html.div_59el9d$;
+  var ArrayList_init = Kotlin.kotlin.collections.ArrayList_init_ww73n8$;
+  var a = $module$kotlinx_html_js.kotlinx.html.a_gu26kr$;
+  var div_0 = $module$kotlinx_html_js.kotlinx.html.div_ri36nr$;
+  var footer = $module$kotlinx_html_js.kotlinx.html.footer_x2k50h$;
+  var ensureNotNull = Kotlin.ensureNotNull;
+  var Kind_CLASS = Kotlin.Kind.CLASS;
+  var p = $module$kotlinx_html_js.kotlinx.html.p_8pggrc$;
+  var set_onClickFunction = $module$kotlinx_html_js.kotlinx.html.js.set_onClickFunction_pszlq2$;
+  var label = $module$kotlinx_html_js.kotlinx.html.label_yd75js$;
+  var InputType = $module$kotlinx_html_js.kotlinx.html.InputType;
+  var input = $module$kotlinx_html_js.kotlinx.html.input_e1g74z$;
+  var throwCCE = Kotlin.throwCCE;
+  var button = $module$kotlinx_html_js.kotlinx.html.button_i4xb7r$;
+  var form = $module$kotlinx_html_js.kotlinx.html.form_3ereno$;
+  var set_id = $module$kotlinx_html_js.kotlinx.html.set_id_ueiko3$;
+  var Pair = Kotlin.kotlin.Pair;
+  var joinToString = Kotlin.kotlin.collections.joinToString_fmv235$;
+  Intro.prototype = Object.create(Frame.prototype);
+  Intro.prototype.constructor = Intro;
+  TextQuestion.prototype = Object.create(Frame.prototype);
+  TextQuestion.prototype.constructor = TextQuestion;
+  CheckQuestion.prototype = Object.create(Frame.prototype);
+  CheckQuestion.prototype.constructor = CheckQuestion;
+  Finish.prototype = Object.create(Frame.prototype);
+  Finish.prototype.constructor = Finish;
+  function complexAndScientificAnalysisOfTheResponseCombination(result) {
+    var tmp$;
+    var name = result.get_za3lpa$(1);
+    if (isBlank(name)) {
+      tmp$ = 'Eugene';
+    }
+     else {
+      tmp$ = name;
+    }
+    var personality = tmp$;
+    return 'Your personality is: ' + personality;
+  }
+  function Main() {
+    this.answers_0 = listOf(['Accurate', 'Neutral', 'Inaccurate']);
+    this.base_0 = div(get_create(document), 'col mx-auto w-50 p-3 text-center');
+    this.currentIndex_0 = 0;
+    this.frames_0 = listOf([new Intro('Find, which of N personalities you are! ONLINE THERAPY THAT TRULY WORKS!'), new TextQuestion('My name is (Choose wisely)'), new CheckQuestion('I will split last piece of cake on the table', this.answers_0), new CheckQuestion('I like my board scram and agile', this.answers_0), new CheckQuestion('I sympathize with the scopeless', this.answers_0), new CheckQuestion('I have trouble controlling my build', this.answers_0), new CheckQuestion('I believe in the importance of tests', this.answers_0), new CheckQuestion('I enjoy code reviews', this.answers_0)]);
+    this.result_0 = ArrayList_init(this.frames_0.size);
+    this.finish_0 = new Finish(Main$finish$lambda(this));
+    var footer_0 = footer(get_create(document), 'bg-secondary text-white-50', Main_init$lambda);
+    var around = div(get_create(document), 'd-flex align-items-center h-100 bg-secondary');
+    var container = div(get_create(document), 'container h-50 bg-light d-flex align-items-center justify-content-center');
+    var row = div(get_create(document), 'row align-items-center');
+    row.append(this.base_0);
+    container.append(row);
+    around.append(container);
+    ensureNotNull(document.body).append(around);
+    ensureNotNull(document.body).append(footer_0);
+  }
+  function Main$next$lambda(this$Main) {
+    return function (it) {
+      var tmp$;
+      tmp$ = this$Main.result_0.iterator();
+      while (tmp$.hasNext()) {
+        var s = tmp$.next();
+        println(s);
+      }
+      return Unit;
+    };
+  }
+  function Main$next$lambda_0(this$Main) {
+    return function (it) {
+      this$Main.result_0.add_11rb$(it);
+      this$Main.next();
+      return Unit;
+    };
+  }
+  Main.prototype.next = function () {
+    clear(this.base_0);
+    if (this.currentIndex_0 === this.frames_0.size) {
+      this.base_0.append(this.finish_0.getHtml_ep0k5p$(Main$next$lambda(this)));
+    }
+     else {
+      this.base_0.append(this.frames_0.get_za3lpa$(this.currentIndex_0).getHtml_ep0k5p$(Main$next$lambda_0(this)));
+      this.currentIndex_0 = this.currentIndex_0 + 1 | 0;
+    }
+  };
+  function Main$finish$lambda(this$Main) {
+    return function () {
+      return complexAndScientificAnalysisOfTheResponseCombination(this$Main.result_0);
+    };
+  }
+  function Main_init$lambda$lambda$lambda($receiver) {
+    $receiver.unaryPlus_pdl1vz$('GitHub link');
+    return Unit;
+  }
+  function Main_init$lambda$lambda($receiver) {
+    $receiver.unaryPlus_pdl1vz$('\xA9 20NN Copyright: ');
+    a($receiver, 'https://github.com/cjkjvfnby/npers', void 0, void 0, Main_init$lambda$lambda$lambda);
+    return Unit;
+  }
+  function Main_init$lambda($receiver) {
+    div_0($receiver, 'container text-center ', Main_init$lambda$lambda);
+    return Unit;
+  }
+  Main.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'Main',
+    interfaces: []
+  };
+  function main$lambda(it) {
+    (new Main()).next();
+    return Unit;
+  }
+  function main() {
+    window.onload = main$lambda;
+  }
+  function Frame() {
+    this.SUBMIT = 'Submit';
+  }
+  Frame.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'Frame',
+    interfaces: []
+  };
+  function Intro(text) {
+    Frame.call(this);
+    this.text_0 = text;
+  }
+  function Intro$getHtml$lambda$lambda(this$Intro) {
+    return function ($receiver) {
+      $receiver.unaryPlus_pdl1vz$(this$Intro.text_0);
+      return Unit;
+    };
+  }
+  function Intro$getHtml$lambda$lambda_0($receiver) {
+    $receiver.unaryPlus_pdl1vz$('Click me to continue.');
+    return Unit;
+  }
+  function Intro$getHtml$lambda$lambda_1(closure$callback) {
+    return function (it) {
+      closure$callback('Started');
+      return Unit;
+    };
+  }
+  function Intro$getHtml$lambda(this$Intro, closure$callback) {
+    return function ($receiver) {
+      p($receiver, void 0, Intro$getHtml$lambda$lambda(this$Intro));
+      p($receiver, 'font-weight-lighter small', Intro$getHtml$lambda$lambda_0);
+      set_onClickFunction($receiver, Intro$getHtml$lambda$lambda_1(closure$callback));
+      return Unit;
+    };
+  }
+  Intro.prototype.getHtml_ep0k5p$ = function (callback) {
+    return div(get_create(document), void 0, Intro$getHtml$lambda(this, callback));
+  };
+  Intro.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'Intro',
+    interfaces: [Frame]
+  };
+  function TextQuestion(question) {
+    Frame.call(this);
+    this.question_0 = question;
+  }
+  function TextQuestion$getHtml$lambda$lambda$lambda(this$TextQuestion) {
+    return function ($receiver) {
+      $receiver.unaryPlus_pdl1vz$(this$TextQuestion.question_0);
+      return Unit;
+    };
+  }
+  function TextQuestion$getHtml$lambda$lambda$lambda_0($receiver) {
+    $receiver.attributes.put_xwzc9p$('id', 'goga');
+    return Unit;
+  }
+  function TextQuestion$getHtml$lambda$lambda$lambda$lambda(closure$callback) {
+    return function (it) {
+      var tmp$;
+      var input = Kotlin.isType(tmp$ = document.getElementById('goga'), HTMLInputElement) ? tmp$ : throwCCE();
+      closure$callback(input.value);
+      return Unit;
+    };
+  }
+  function TextQuestion$getHtml$lambda$lambda$lambda_1(this$TextQuestion, closure$callback) {
+    return function ($receiver) {
+      $receiver.unaryPlus_pdl1vz$(this$TextQuestion.SUBMIT);
+      set_onClickFunction($receiver, TextQuestion$getHtml$lambda$lambda$lambda$lambda(closure$callback));
+      return Unit;
+    };
+  }
+  function TextQuestion$getHtml$lambda$lambda(this$TextQuestion, closure$callback) {
+    return function ($receiver) {
+      label($receiver, 'font-weight-bold', TextQuestion$getHtml$lambda$lambda$lambda(this$TextQuestion));
+      input($receiver, InputType.text, void 0, void 0, void 0, 'form-control', TextQuestion$getHtml$lambda$lambda$lambda_0);
+      button($receiver, void 0, void 0, void 0, void 0, 'form-control', TextQuestion$getHtml$lambda$lambda$lambda_1(this$TextQuestion, closure$callback));
+      return Unit;
+    };
+  }
+  function TextQuestion$getHtml$lambda(this$TextQuestion, closure$callback) {
+    return function ($receiver) {
+      div_0($receiver, 'form-group', TextQuestion$getHtml$lambda$lambda(this$TextQuestion, closure$callback));
+      return Unit;
+    };
+  }
+  TextQuestion.prototype.getHtml_ep0k5p$ = function (callback) {
+    return form(get_create(document), void 0, void 0, void 0, void 0, TextQuestion$getHtml$lambda(this, callback));
+  };
+  TextQuestion.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'TextQuestion',
+    interfaces: [Frame]
+  };
+  function CheckQuestion(question, items) {
+    Frame.call(this);
+    this.question_0 = question;
+    this.items_0 = items;
+  }
+  function CheckQuestion$getHtml$lambda$lambda(this$CheckQuestion) {
+    return function ($receiver) {
+      $receiver.unaryPlus_pdl1vz$(this$CheckQuestion.question_0);
+      return Unit;
+    };
+  }
+  function CheckQuestion$getHtml$lambda$lambda$lambda(closure$item) {
+    return function ($receiver) {
+      set_id($receiver, closure$item);
+      return Unit;
+    };
+  }
+  function CheckQuestion$getHtml$lambda$lambda$lambda_0(closure$item) {
+    return function ($receiver) {
+      $receiver.unaryPlus_pdl1vz$(closure$item);
+      return Unit;
+    };
+  }
+  function CheckQuestion$getHtml$lambda$lambda_0(closure$item) {
+    return function ($receiver) {
+      input($receiver, InputType.checkBox, void 0, void 0, void 0, 'form-check-input', CheckQuestion$getHtml$lambda$lambda$lambda(closure$item));
+      label($receiver, 'form-check-label', CheckQuestion$getHtml$lambda$lambda$lambda_0(closure$item));
+      return Unit;
+    };
+  }
+  function CheckQuestion$getHtml$lambda$lambda$lambda$lambda(it) {
+    return it.first;
+  }
+  var collectionSizeOrDefault = Kotlin.kotlin.collections.collectionSizeOrDefault_ba2ldo$;
+  var ArrayList_init_0 = Kotlin.kotlin.collections.ArrayList_init_287e2$;
+  function CheckQuestion$getHtml$lambda$lambda$lambda_1(closure$callback, this$CheckQuestion) {
+    return function (it) {
+      var tmp$ = closure$callback;
+      var $receiver = this$CheckQuestion.items_0;
+      var destination = ArrayList_init(collectionSizeOrDefault($receiver, 10));
+      var tmp$_0;
+      tmp$_0 = $receiver.iterator();
+      while (tmp$_0.hasNext()) {
+        var item = tmp$_0.next();
+        var tmp$_1;
+        destination.add_11rb$(new Pair(item, Kotlin.isType(tmp$_1 = document.getElementById(item), HTMLInputElement) ? tmp$_1 : throwCCE()));
+      }
+      var destination_0 = ArrayList_init_0();
+      var tmp$_2;
+      tmp$_2 = destination.iterator();
+      while (tmp$_2.hasNext()) {
+        var element = tmp$_2.next();
+        if (element.second.checked)
+          destination_0.add_11rb$(element);
+      }
+      tmp$(joinToString(destination_0, ',', void 0, void 0, void 0, void 0, CheckQuestion$getHtml$lambda$lambda$lambda$lambda));
+      return Unit;
+    };
+  }
+  function CheckQuestion$getHtml$lambda$lambda_1(this$CheckQuestion, closure$callback) {
+    return function ($receiver) {
+      $receiver.unaryPlus_pdl1vz$(this$CheckQuestion.SUBMIT);
+      set_onClickFunction($receiver, CheckQuestion$getHtml$lambda$lambda$lambda_1(closure$callback, this$CheckQuestion));
+      return Unit;
+    };
+  }
+  function CheckQuestion$getHtml$lambda(this$CheckQuestion, closure$callback) {
+    return function ($receiver) {
+      var tmp$;
+      label($receiver, 'font-weight-bold', CheckQuestion$getHtml$lambda$lambda(this$CheckQuestion));
+      tmp$ = this$CheckQuestion.items_0.iterator();
+      while (tmp$.hasNext()) {
+        var item = tmp$.next();
+        div_0($receiver, 'form-check text-left', CheckQuestion$getHtml$lambda$lambda_0(item));
+      }
+      button($receiver, void 0, void 0, void 0, void 0, 'form-control', CheckQuestion$getHtml$lambda$lambda_1(this$CheckQuestion, closure$callback));
+      return Unit;
+    };
+  }
+  CheckQuestion.prototype.getHtml_ep0k5p$ = function (callback) {
+    return form(get_create(document), void 0, void 0, void 0, void 0, CheckQuestion$getHtml$lambda(this, callback));
+  };
+  CheckQuestion.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'CheckQuestion',
+    interfaces: [Frame]
+  };
+  function Finish(analyser) {
+    Frame.call(this);
+    this.analyser = analyser;
+  }
+  function Finish$getHtml$lambda$lambda($receiver) {
+    $receiver.unaryPlus_pdl1vz$('Thank you. It will change your life.');
+    return Unit;
+  }
+  function Finish$getHtml$lambda$lambda_0(this$Finish) {
+    return function ($receiver) {
+      $receiver.unaryPlus_pdl1vz$(this$Finish.analyser());
+      return Unit;
+    };
+  }
+  function Finish$getHtml$lambda$lambda$lambda($receiver) {
+    $receiver.href = 'https://github.com/Cjkjvfnby/npers/blob/master/src/main/kotlin/analysis.kt';
+    $receiver.unaryPlus_pdl1vz$('Your responses are very important to us.');
+    return Unit;
+  }
+  function Finish$getHtml$lambda$lambda_1($receiver) {
+    a($receiver, void 0, void 0, void 0, Finish$getHtml$lambda$lambda$lambda);
+    return Unit;
+  }
+  function Finish$getHtml$lambda(this$Finish) {
+    return function ($receiver) {
+      p($receiver, void 0, Finish$getHtml$lambda$lambda);
+      p($receiver, 'lead text-primary font-weight-bold', Finish$getHtml$lambda$lambda_0(this$Finish));
+      p($receiver, 'font-weight-light small', Finish$getHtml$lambda$lambda_1);
+      return Unit;
+    };
+  }
+  Finish.prototype.getHtml_ep0k5p$ = function (callback) {
+    return div(get_create(document), void 0, Finish$getHtml$lambda(this));
+  };
+  Finish.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'Finish',
+    interfaces: [Frame]
+  };
+  _.complexAndScientificAnalysisOfTheResponseCombination_mhpeer$ = complexAndScientificAnalysisOfTheResponseCombination;
+  _.Main = Main;
+  _.main = main;
+  _.Frame = Frame;
+  _.Intro = Intro;
+  _.TextQuestion = TextQuestion;
+  _.CheckQuestion = CheckQuestion;
+  _.Finish = Finish;
+  main();
+  Kotlin.defineModule('output', _);
+  return _;
+}(typeof output === 'undefined' ? {} : output, kotlin, this['kotlinx-html-js']);
+
+//# sourceMappingURL=output.js.map
