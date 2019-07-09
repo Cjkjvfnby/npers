@@ -9,9 +9,9 @@ import kotlin.dom.clear
 
 
 class Main {
-    private val answers = listOf("Accurate", "Neutral", "Inaccurate")
     private var appendPoint: Element
     private var currentIndex: Int = 0
+    private val answers = listOf("Accurate", "Neutral", "Inaccurate")
     private val frames = listOf(
         Intro("Find, which of N personalities you are! ONLINE THERAPY THAT TRULY WORKS!"),
         TextQuestion("My name is (Choose wisely)"),
@@ -23,7 +23,7 @@ class Main {
         CheckQuestion("I enjoy code reviews", answers)
     )
     private val result: MutableList<String> = ArrayList(frames.size)
-    private val finish: Finish = Finish { complexAndScientificAnalysisOfTheResponseCombination(result) }
+
 
     init {
         val around = document.create.div("d-flex align-items-center h-100 bg-secondary") {
@@ -54,11 +54,8 @@ class Main {
     fun next() {
         appendPoint.clear()
         if (currentIndex == frames.size) {
-            appendPoint.append(finish.getHtml {
-                for (s in result) {
-                    println(s)
-                }
-            })
+            appendPoint.append(
+                Finish { complexAndScientificAnalysisOfTheResponseCombination(result) }.getHtml {})
         } else {
             appendPoint.append(frames[currentIndex].getHtml {
                 result.add(it)
