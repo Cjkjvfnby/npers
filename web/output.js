@@ -140,7 +140,7 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
     window.onload = main$lambda;
   }
   function Frame() {
-    this.SUBMIT = 'Submit';
+    this.submit = 'Submit';
   }
   Frame.$metadata$ = {
     kind: Kind_CLASS,
@@ -186,6 +186,7 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
   function TextQuestion(question) {
     Frame.call(this);
     this.question_0 = question;
+    this.inputId_0 = 'goga';
   }
   function TextQuestion$getHtml$lambda$lambda$lambda(this$TextQuestion) {
     return function ($receiver) {
@@ -193,29 +194,33 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
       return Unit;
     };
   }
-  function TextQuestion$getHtml$lambda$lambda$lambda_0($receiver) {
-    $receiver.attributes.put_xwzc9p$('id', 'goga');
-    return Unit;
+  function TextQuestion$getHtml$lambda$lambda$lambda_0(this$TextQuestion) {
+    return function ($receiver) {
+      var $receiver_0 = $receiver.attributes;
+      var value = this$TextQuestion.inputId_0;
+      $receiver_0.put_xwzc9p$('id', value);
+      return Unit;
+    };
   }
-  function TextQuestion$getHtml$lambda$lambda$lambda$lambda(closure$callback) {
+  function TextQuestion$getHtml$lambda$lambda$lambda$lambda(this$TextQuestion, closure$callback) {
     return function (it) {
       var tmp$;
-      var input = Kotlin.isType(tmp$ = document.getElementById('goga'), HTMLInputElement) ? tmp$ : throwCCE();
+      var input = Kotlin.isType(tmp$ = document.getElementById(this$TextQuestion.inputId_0), HTMLInputElement) ? tmp$ : throwCCE();
       closure$callback(input.value);
       return Unit;
     };
   }
   function TextQuestion$getHtml$lambda$lambda$lambda_1(this$TextQuestion, closure$callback) {
     return function ($receiver) {
-      $receiver.unaryPlus_pdl1vz$(this$TextQuestion.SUBMIT);
-      set_onClickFunction($receiver, TextQuestion$getHtml$lambda$lambda$lambda$lambda(closure$callback));
+      $receiver.unaryPlus_pdl1vz$(this$TextQuestion.submit);
+      set_onClickFunction($receiver, TextQuestion$getHtml$lambda$lambda$lambda$lambda(this$TextQuestion, closure$callback));
       return Unit;
     };
   }
   function TextQuestion$getHtml$lambda$lambda(this$TextQuestion, closure$callback) {
     return function ($receiver) {
       label($receiver, 'font-weight-bold', TextQuestion$getHtml$lambda$lambda$lambda(this$TextQuestion));
-      input($receiver, InputType.text, void 0, void 0, void 0, 'form-control', TextQuestion$getHtml$lambda$lambda$lambda_0);
+      input($receiver, InputType.text, void 0, void 0, void 0, 'form-control', TextQuestion$getHtml$lambda$lambda$lambda_0(this$TextQuestion));
       button($receiver, void 0, void 0, void 0, void 0, 'form-control', TextQuestion$getHtml$lambda$lambda$lambda_1(this$TextQuestion, closure$callback));
       return Unit;
     };
@@ -295,7 +300,7 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
   }
   function CheckQuestion$getHtml$lambda$lambda_1(this$CheckQuestion, closure$callback) {
     return function ($receiver) {
-      $receiver.unaryPlus_pdl1vz$(this$CheckQuestion.SUBMIT);
+      $receiver.unaryPlus_pdl1vz$(this$CheckQuestion.submit);
       set_onClickFunction($receiver, CheckQuestion$getHtml$lambda$lambda$lambda_1(closure$callback, this$CheckQuestion));
       return Unit;
     };

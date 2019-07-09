@@ -8,7 +8,7 @@ import kotlin.browser.document
 
 abstract class Frame {
     abstract fun getHtml(callback: (String) -> Unit): HTMLElement
-    val SUBMIT = "Submit"
+    val submit = "Submit"
 }
 
 
@@ -26,16 +26,17 @@ class Intro(private val text: String) : Frame() {
 
 
 class TextQuestion(private val question: String) : Frame() {
+    private val inputId = "goga"
 
     override fun getHtml(callback: (String) -> Unit): HTMLElement {
         return document.create.form {
             div("form-group") {
                 label("font-weight-bold") { +question }
-                input(type = InputType.text, classes = "form-control") { attributes.put("id", "goga") }
+                input(type = InputType.text, classes = "form-control") { attributes["id"] = inputId }
                 button(classes = "form-control") {
-                    +SUBMIT
+                    +submit
                     onClickFunction = {
-                        val input = document.getElementById("goga") as HTMLInputElement
+                        val input = document.getElementById(inputId) as HTMLInputElement
                         callback(input.value)
                     }
                 }
@@ -47,12 +48,10 @@ class TextQuestion(private val question: String) : Frame() {
 
 class CheckQuestion(private val question: String, private val items: List<String>) : Frame() {
     override fun getHtml(callback: (String) -> Unit): HTMLElement {
-
-
         return document.create.form {
             label("font-weight-bold") { +question }
             for (item in items) {
-//            TODO("make id from the name")
+                // TODO "make id from the name"
                 div("form-check text-left") {
                     input(type = InputType.checkBox, classes = "form-check-input") {
                         id = item
@@ -61,12 +60,11 @@ class CheckQuestion(private val question: String, private val items: List<String
                 }
             }
             button(classes = "form-control") {
-                +SUBMIT
+                +submit
                 onClickFunction = {
                     callback(items.map {
                         Pair(it, document.getElementById(it) as HTMLInputElement)
                     }.filter { it.second.checked }.joinToString(separator = ",") { it.first })
-
                 }
             }
         }
