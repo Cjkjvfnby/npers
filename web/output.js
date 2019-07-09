@@ -11,11 +11,11 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
   var println = Kotlin.kotlin.io.println_s8jyv4$;
   var Unit = Kotlin.kotlin.Unit;
   var listOf = Kotlin.kotlin.collections.listOf_i5x0yv$;
-  var get_create = $module$kotlinx_html_js.kotlinx.html.dom.get_create_4wc2mh$;
-  var div = $module$kotlinx_html_js.kotlinx.html.div_59el9d$;
   var ArrayList_init = Kotlin.kotlin.collections.ArrayList_init_ww73n8$;
+  var get_create = $module$kotlinx_html_js.kotlinx.html.dom.get_create_4wc2mh$;
+  var div = $module$kotlinx_html_js.kotlinx.html.div_ri36nr$;
+  var div_0 = $module$kotlinx_html_js.kotlinx.html.div_59el9d$;
   var a = $module$kotlinx_html_js.kotlinx.html.a_gu26kr$;
-  var div_0 = $module$kotlinx_html_js.kotlinx.html.div_ri36nr$;
   var footer = $module$kotlinx_html_js.kotlinx.html.footer_x2k50h$;
   var ensureNotNull = Kotlin.ensureNotNull;
   var Kind_CLASS = Kotlin.Kind.CLASS;
@@ -52,20 +52,16 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
   }
   function Main() {
     this.answers_0 = listOf(['Accurate', 'Neutral', 'Inaccurate']);
-    this.base_0 = div(get_create(document), 'col mx-auto w-50 p-3 text-center');
+    this.appendPoint_0 = null;
     this.currentIndex_0 = 0;
     this.frames_0 = listOf([new Intro('Find, which of N personalities you are! ONLINE THERAPY THAT TRULY WORKS!'), new TextQuestion('My name is (Choose wisely)'), new CheckQuestion('I will split last piece of cake on the table', this.answers_0), new CheckQuestion('I like my board scram and agile', this.answers_0), new CheckQuestion('I sympathize with the scopeless', this.answers_0), new CheckQuestion('I have trouble controlling my build', this.answers_0), new CheckQuestion('I believe in the importance of tests', this.answers_0), new CheckQuestion('I enjoy code reviews', this.answers_0)]);
     this.result_0 = ArrayList_init(this.frames_0.size);
     this.finish_0 = new Finish(Main$finish$lambda(this));
-    var footer_0 = footer(get_create(document), 'bg-secondary text-white-50', Main_init$lambda);
-    var around = div(get_create(document), 'd-flex align-items-center h-100 bg-secondary');
-    var container = div(get_create(document), 'container h-50 bg-light d-flex align-items-center justify-content-center');
-    var row = div(get_create(document), 'row align-items-center');
-    row.append(this.base_0);
-    container.append(row);
-    around.append(container);
+    var around = div_0(get_create(document), 'd-flex align-items-center h-100 bg-secondary', Main_init$lambda);
+    var footer_0 = footer(get_create(document), 'bg-secondary text-white-50', Main_init$lambda_0);
     ensureNotNull(document.body).append(around);
     ensureNotNull(document.body).append(footer_0);
+    this.appendPoint_0 = ensureNotNull(document.getElementById('appendPoint'));
   }
   function Main$next$lambda(this$Main) {
     return function (it) {
@@ -86,12 +82,12 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
     };
   }
   Main.prototype.next = function () {
-    clear(this.base_0);
+    clear(this.appendPoint_0);
     if (this.currentIndex_0 === this.frames_0.size) {
-      this.base_0.append(this.finish_0.getHtml_ep0k5p$(Main$next$lambda(this)));
+      this.appendPoint_0.append(this.finish_0.getHtml_ep0k5p$(Main$next$lambda(this)));
     }
      else {
-      this.base_0.append(this.frames_0.get_za3lpa$(this.currentIndex_0).getHtml_ep0k5p$(Main$next$lambda_0(this)));
+      this.appendPoint_0.append(this.frames_0.get_za3lpa$(this.currentIndex_0).getHtml_ep0k5p$(Main$next$lambda_0(this)));
       this.currentIndex_0 = this.currentIndex_0 + 1 | 0;
     }
   };
@@ -100,17 +96,35 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
       return complexAndScientificAnalysisOfTheResponseCombination(this$Main.result_0);
     };
   }
+  function Main_init$lambda$lambda$lambda$lambda($receiver) {
+    var $receiver_0 = $receiver.attributes;
+    var value = 'appendPoint';
+    $receiver_0.put_xwzc9p$('id', value);
+    return Unit;
+  }
   function Main_init$lambda$lambda$lambda($receiver) {
-    $receiver.unaryPlus_pdl1vz$('GitHub link');
+    div($receiver, 'col mx-auto w-50 p-3 text-center', Main_init$lambda$lambda$lambda$lambda);
     return Unit;
   }
   function Main_init$lambda$lambda($receiver) {
-    $receiver.unaryPlus_pdl1vz$('\xA9 20NN Copyright: ');
-    a($receiver, 'https://github.com/cjkjvfnby/npers', void 0, void 0, Main_init$lambda$lambda$lambda);
+    div($receiver, 'row align-items-center', Main_init$lambda$lambda$lambda);
     return Unit;
   }
   function Main_init$lambda($receiver) {
-    div_0($receiver, 'container text-center ', Main_init$lambda$lambda);
+    div($receiver, 'container h-50 bg-light d-flex align-items-center justify-content-center', Main_init$lambda$lambda);
+    return Unit;
+  }
+  function Main_init$lambda$lambda$lambda_0($receiver) {
+    $receiver.unaryPlus_pdl1vz$('GitHub link');
+    return Unit;
+  }
+  function Main_init$lambda$lambda_0($receiver) {
+    $receiver.unaryPlus_pdl1vz$('\xA9 20NN Copyright: ');
+    a($receiver, 'https://github.com/cjkjvfnby/npers', void 0, void 0, Main_init$lambda$lambda$lambda_0);
+    return Unit;
+  }
+  function Main_init$lambda_0($receiver) {
+    div($receiver, 'container text-center ', Main_init$lambda$lambda_0);
     return Unit;
   }
   Main.$metadata$ = {
@@ -162,7 +176,7 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
     };
   }
   Intro.prototype.getHtml_ep0k5p$ = function (callback) {
-    return div(get_create(document), void 0, Intro$getHtml$lambda(this, callback));
+    return div_0(get_create(document), void 0, Intro$getHtml$lambda(this, callback));
   };
   Intro.$metadata$ = {
     kind: Kind_CLASS,
@@ -208,7 +222,7 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
   }
   function TextQuestion$getHtml$lambda(this$TextQuestion, closure$callback) {
     return function ($receiver) {
-      div_0($receiver, 'form-group', TextQuestion$getHtml$lambda$lambda(this$TextQuestion, closure$callback));
+      div($receiver, 'form-group', TextQuestion$getHtml$lambda$lambda(this$TextQuestion, closure$callback));
       return Unit;
     };
   }
@@ -293,7 +307,7 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
       tmp$ = this$CheckQuestion.items_0.iterator();
       while (tmp$.hasNext()) {
         var item = tmp$.next();
-        div_0($receiver, 'form-check text-left', CheckQuestion$getHtml$lambda$lambda_0(item));
+        div($receiver, 'form-check text-left', CheckQuestion$getHtml$lambda$lambda_0(item));
       }
       button($receiver, void 0, void 0, void 0, void 0, 'form-control', CheckQuestion$getHtml$lambda$lambda_1(this$CheckQuestion, closure$callback));
       return Unit;
@@ -339,7 +353,7 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
     };
   }
   Finish.prototype.getHtml_ep0k5p$ = function (callback) {
-    return div(get_create(document), void 0, Finish$getHtml$lambda(this));
+    return div_0(get_create(document), void 0, Finish$getHtml$lambda(this));
   };
   Finish.$metadata$ = {
     kind: Kind_CLASS,
