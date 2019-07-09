@@ -7,17 +7,15 @@ import kotlin.browser.document
 
 
 abstract class Frame {
-    abstract fun getHtml(callback: (String) -> Unit): HTMLElement
     val submit = "Submit"
+    abstract fun getHtml(callback: (String) -> Unit): HTMLElement
 }
 
 
 class Intro(private val text: String) : Frame() {
     override fun getHtml(callback: (String) -> Unit): HTMLElement {
         return document.create.div {
-            p {
-                +text
-            }
+            p { +text }
             p("font-weight-lighter small") { +"Click me to continue." }
             onClickFunction = { callback("Started") }
         }
@@ -72,11 +70,11 @@ class CheckQuestion(private val question: String, private val items: List<String
 }
 
 
-class Finish(val analyser: () -> String) : Frame() {
+class Finish(val processResult: () -> String) : Frame() {
     override fun getHtml(callback: (String) -> Unit): HTMLElement {
         return document.create.div {
             p { +"Thank you. It will change your life." }
-            p("lead text-primary font-weight-bold") { +analyser() }
+            p("lead text-primary font-weight-bold") { +processResult() }
             p("font-weight-light small") {
                 a {
                     href = "https://github.com/Cjkjvfnby/npers/blob/master/src/main/kotlin/analysis.kt"

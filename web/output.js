@@ -8,10 +8,9 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
   'use strict';
   var isBlank = Kotlin.kotlin.text.isBlank_gw00vp$;
   var clear = Kotlin.kotlin.dom.clear_asww5s$;
-  var println = Kotlin.kotlin.io.println_s8jyv4$;
   var Unit = Kotlin.kotlin.Unit;
   var listOf = Kotlin.kotlin.collections.listOf_i5x0yv$;
-  var ArrayList_init = Kotlin.kotlin.collections.ArrayList_init_ww73n8$;
+  var ArrayList_init = Kotlin.kotlin.collections.ArrayList_init_287e2$;
   var get_create = $module$kotlinx_html_js.kotlinx.html.dom.get_create_4wc2mh$;
   var div = $module$kotlinx_html_js.kotlinx.html.div_ri36nr$;
   var div_0 = $module$kotlinx_html_js.kotlinx.html.div_59el9d$;
@@ -51,12 +50,10 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
     return 'Your personality is: ' + personality;
   }
   function Main() {
-    this.answers_0 = listOf(['Accurate', 'Neutral', 'Inaccurate']);
     this.appendPoint_0 = null;
-    this.currentIndex_0 = 0;
-    this.frames_0 = listOf([new Intro('Find, which of N personalities you are! ONLINE THERAPY THAT TRULY WORKS!'), new TextQuestion('My name is (Choose wisely)'), new CheckQuestion('I will split last piece of cake on the table', this.answers_0), new CheckQuestion('I like my board scram and agile', this.answers_0), new CheckQuestion('I sympathize with the scopeless', this.answers_0), new CheckQuestion('I have trouble controlling my build', this.answers_0), new CheckQuestion('I believe in the importance of tests', this.answers_0), new CheckQuestion('I enjoy code reviews', this.answers_0)]);
-    this.result_0 = ArrayList_init(this.frames_0.size);
-    this.finish_0 = new Finish(Main$finish$lambda(this));
+    this.answerChoices_0 = listOf(['Accurate', 'Neutral', 'Inaccurate']);
+    this.resultContainer_0 = ArrayList_init();
+    this.framesIterator_0 = listOf([new Intro('Find, which of N personalities you are! ONLINE THERAPY THAT TRULY WORKS!'), new TextQuestion('My name is (Choose wisely)'), new CheckQuestion('I will split last piece of cake on the table', this.answerChoices_0), new CheckQuestion('I like my board scram and agile', this.answerChoices_0), new CheckQuestion('I sympathize with the scopeless', this.answerChoices_0), new CheckQuestion('I have trouble controlling my build', this.answerChoices_0), new CheckQuestion('I believe in the importance of tests', this.answerChoices_0), new CheckQuestion('I enjoy code reviews', this.answerChoices_0), new Finish(Main$framesIterator$lambda(this))]).iterator();
     var around = div_0(get_create(document), 'd-flex align-items-center h-100 bg-secondary', Main_init$lambda);
     var footer_0 = footer(get_create(document), 'bg-secondary text-white-50', Main_init$lambda_0);
     ensureNotNull(document.body).append(around);
@@ -65,35 +62,21 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
   }
   function Main$next$lambda(this$Main) {
     return function (it) {
-      var tmp$;
-      tmp$ = this$Main.result_0.iterator();
-      while (tmp$.hasNext()) {
-        var s = tmp$.next();
-        println(s);
-      }
-      return Unit;
-    };
-  }
-  function Main$next$lambda_0(this$Main) {
-    return function (it) {
-      this$Main.result_0.add_11rb$(it);
+      this$Main.resultContainer_0.add_11rb$(it);
       this$Main.next();
       return Unit;
     };
   }
   Main.prototype.next = function () {
+    if (!this.framesIterator_0.hasNext()) {
+      return;
+    }
     clear(this.appendPoint_0);
-    if (this.currentIndex_0 === this.frames_0.size) {
-      this.appendPoint_0.append(this.finish_0.getHtml_ep0k5p$(Main$next$lambda(this)));
-    }
-     else {
-      this.appendPoint_0.append(this.frames_0.get_za3lpa$(this.currentIndex_0).getHtml_ep0k5p$(Main$next$lambda_0(this)));
-      this.currentIndex_0 = this.currentIndex_0 + 1 | 0;
-    }
+    this.appendPoint_0.append(this.framesIterator_0.next().getHtml_ep0k5p$(Main$next$lambda(this)));
   };
-  function Main$finish$lambda(this$Main) {
+  function Main$framesIterator$lambda(this$Main) {
     return function () {
-      return complexAndScientificAnalysisOfTheResponseCombination(this$Main.result_0);
+      return complexAndScientificAnalysisOfTheResponseCombination(this$Main.resultContainer_0);
     };
   }
   function Main_init$lambda$lambda$lambda$lambda($receiver) {
@@ -273,12 +256,12 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
     return it.first;
   }
   var collectionSizeOrDefault = Kotlin.kotlin.collections.collectionSizeOrDefault_ba2ldo$;
-  var ArrayList_init_0 = Kotlin.kotlin.collections.ArrayList_init_287e2$;
+  var ArrayList_init_0 = Kotlin.kotlin.collections.ArrayList_init_ww73n8$;
   function CheckQuestion$getHtml$lambda$lambda$lambda_1(closure$callback, this$CheckQuestion) {
     return function (it) {
       var tmp$ = closure$callback;
       var $receiver = this$CheckQuestion.items_0;
-      var destination = ArrayList_init(collectionSizeOrDefault($receiver, 10));
+      var destination = ArrayList_init_0(collectionSizeOrDefault($receiver, 10));
       var tmp$_0;
       tmp$_0 = $receiver.iterator();
       while (tmp$_0.hasNext()) {
@@ -286,7 +269,7 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
         var tmp$_1;
         destination.add_11rb$(new Pair(item, Kotlin.isType(tmp$_1 = document.getElementById(item), HTMLInputElement) ? tmp$_1 : throwCCE()));
       }
-      var destination_0 = ArrayList_init_0();
+      var destination_0 = ArrayList_init();
       var tmp$_2;
       tmp$_2 = destination.iterator();
       while (tmp$_2.hasNext()) {
@@ -326,9 +309,9 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
     simpleName: 'CheckQuestion',
     interfaces: [Frame]
   };
-  function Finish(analyser) {
+  function Finish(processResult) {
     Frame.call(this);
-    this.analyser = analyser;
+    this.processResult = processResult;
   }
   function Finish$getHtml$lambda$lambda($receiver) {
     $receiver.unaryPlus_pdl1vz$('Thank you. It will change your life.');
@@ -336,7 +319,7 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
   }
   function Finish$getHtml$lambda$lambda_0(this$Finish) {
     return function ($receiver) {
-      $receiver.unaryPlus_pdl1vz$(this$Finish.analyser());
+      $receiver.unaryPlus_pdl1vz$(this$Finish.processResult());
       return Unit;
     };
   }

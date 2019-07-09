@@ -10,20 +10,19 @@ import kotlin.dom.clear
 
 class Main {
     private var appendPoint: Element
-    private var currentIndex: Int = 0
-    private val answers = listOf("Accurate", "Neutral", "Inaccurate")
-    private val frames = listOf(
+    private val answerChoices = listOf("Accurate", "Neutral", "Inaccurate")
+    private val resultContainer: MutableList<String> = ArrayList()
+    private val framesIterator = listOf(
         Intro("Find, which of N personalities you are! ONLINE THERAPY THAT TRULY WORKS!"),
         TextQuestion("My name is (Choose wisely)"),
-        CheckQuestion("I will split last piece of cake on the table", answers),
-        CheckQuestion("I like my board scram and agile", answers),
-        CheckQuestion("I sympathize with the scopeless", answers),
-        CheckQuestion("I have trouble controlling my build", answers),
-        CheckQuestion("I believe in the importance of tests", answers),
-        CheckQuestion("I enjoy code reviews", answers)
-    )
-    private val result: MutableList<String> = ArrayList(frames.size)
-
+        CheckQuestion("I will split last piece of cake on the table", answerChoices),
+        CheckQuestion("I like my board scram and agile", answerChoices),
+        CheckQuestion("I sympathize with the scopeless", answerChoices),
+        CheckQuestion("I have trouble controlling my build", answerChoices),
+        CheckQuestion("I believe in the importance of tests", answerChoices),
+        CheckQuestion("I enjoy code reviews", answerChoices),
+        Finish { complexAndScientificAnalysisOfTheResponseCombination(resultContainer) }
+    ).iterator()
 
     init {
         val around = document.create.div("d-flex align-items-center h-100 bg-secondary") {
@@ -52,17 +51,16 @@ class Main {
     }
 
     fun next() {
-        appendPoint.clear()
-        if (currentIndex == frames.size) {
-            appendPoint.append(
-                Finish { complexAndScientificAnalysisOfTheResponseCombination(result) }.getHtml {})
-        } else {
-            appendPoint.append(frames[currentIndex].getHtml {
-                result.add(it)
-                next()
-            })
-            currentIndex++
+        if (!framesIterator.hasNext()) {
+            return
         }
+        appendPoint.clear()
+        appendPoint.append(
+            framesIterator.next().getHtml {
+                resultContainer.add(it)
+                next()
+            }
+        )
     }
 }
 
