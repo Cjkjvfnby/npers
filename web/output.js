@@ -29,6 +29,8 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
   var set_id = $module$kotlinx_html_js.kotlinx.html.set_id_ueiko3$;
   var Pair = Kotlin.kotlin.Pair;
   var joinToString = Kotlin.kotlin.collections.joinToString_fmv235$;
+  var collectionSizeOrDefault = Kotlin.kotlin.collections.collectionSizeOrDefault_ba2ldo$;
+  var ArrayList_init_0 = Kotlin.kotlin.collections.ArrayList_init_ww73n8$;
   Intro.prototype = Object.create(Frame.prototype);
   Intro.prototype.constructor = Intro;
   TextQuestion.prototype = Object.create(Frame.prototype);
@@ -255,8 +257,6 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
   function CheckQuestion$getHtml$lambda$lambda$lambda$lambda(it) {
     return it.first;
   }
-  var collectionSizeOrDefault = Kotlin.kotlin.collections.collectionSizeOrDefault_ba2ldo$;
-  var ArrayList_init_0 = Kotlin.kotlin.collections.ArrayList_init_ww73n8$;
   function CheckQuestion$getHtml$lambda$lambda$lambda_1(closure$callback, this$CheckQuestion) {
     return function (it) {
       var tmp$ = closure$callback;
