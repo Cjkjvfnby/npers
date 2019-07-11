@@ -1,10 +1,4 @@
-if (typeof kotlin === 'undefined') {
-  throw new Error("Error loading module 'output'. Its dependency 'kotlin' was not found. Please, check whether 'kotlin' is loaded prior to 'output'.");
-}
-if (typeof this['kotlinx-html-js'] === 'undefined') {
-  throw new Error("Error loading module 'output'. Its dependency 'kotlinx-html-js' was not found. Please, check whether 'kotlinx-html-js' is loaded prior to 'output'.");
-}
-var output = function (_, Kotlin, $module$kotlinx_html_js) {
+(function (_, Kotlin, $module$kotlinx_html_js) {
   'use strict';
   var isBlank = Kotlin.kotlin.text.isBlank_gw00vp$;
   var clear = Kotlin.kotlin.dom.clear_asww5s$;
@@ -359,6 +353,6 @@ var output = function (_, Kotlin, $module$kotlinx_html_js) {
   main();
   Kotlin.defineModule('output', _);
   return _;
-}(typeof output === 'undefined' ? {} : output, kotlin, this['kotlinx-html-js']);
+}(module.exports, require('kotlin'), require('kotlinx-html-js')));
 
 //# sourceMappingURL=output.js.map
