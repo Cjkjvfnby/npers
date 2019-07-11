@@ -1,3 +1,5 @@
+rootProject.name = "npers"
+
 pluginManagement {
     resolutionStrategy {
         eachPlugin {
@@ -7,5 +9,3 @@ pluginManagement {
         }
     }
 }
-rootProject.name = 'npers'
-
