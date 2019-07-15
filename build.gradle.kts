@@ -5,8 +5,9 @@ group = "org.sa.npers"
 version = "1.0-SNAPSHOT"
 
 plugins {
-    id("org.jetbrains.kotlin.js") version "1.3.41"
+    id("kotlin2js") version "1.3.41"
     idea
+//    id("com.dorongold.task-tree") version "1.4"
 }
 
 dependencies {
@@ -23,34 +24,25 @@ repositories {
 
 tasks.withType<Kotlin2JsCompile> {
     kotlinOptions {
-        moduleKind = "commonjs"
+        moduleKind = "plain"
         outputFile = "${projectDir}/web/output.js"
+        sourceMap = true
     }
 }
 
 
-
-//task assembleWeb(type: Sync) {
-//    configurations.compile.each { File file ->
-//        copy {
-//            includeEmptyDirs = false
-//            from zipTree(file.absolutePath)
-//            into "${projectDir}/web/lib"
-//            include { fileTreeElement ->
-//                def path = fileTreeElement.path
-//                        path.endsWith(".js") && (path.startsWith("META-INF/resources/")  ||
-//                        !path.startsWith("META-INF/"))
-//            }
-//        }
-//    }
-//}
-
-//assemble.dependsOn assembleWeb
-
-
-tasks.register<Copy>("copyOutput") {
-    from("$buildDir/reports")
-    include("*.pdf")
-    into("$buildDir/toArchive")
+task<Copy>("assembleJsLib") {
+    configurations.compile.get().resolve().forEach { file: File ->
+        from(zipTree(file.absolutePath), {
+            includeEmptyDirs = false
+            include { fileTreeElement ->
+                val path = fileTreeElement.path
+                (path.endsWith(".js") || path.endsWith(".js.map")) && (path.startsWith("META-INF/resources/") ||
+                        !path.startsWith("META-INF/"))
+            }
+        })
+    }
+    from(tasks.withType<ProcessResources>().map { it.destinationDir })
+    into("web/lib")
 }
-
+tasks["build"].dependsOn(tasks["assembleJsLib"])
